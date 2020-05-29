@@ -1,0 +1,6 @@
+# Project exclude paths
+/wx-edu-web/target/
+/wx-alone.iml
+/.idea/
+/wx-edu-admin/wx-edu-admin.iml
+/wx-edu-web/wx-edu-web.iml
