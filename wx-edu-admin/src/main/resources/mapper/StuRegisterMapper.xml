@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqt.edu.api.student.mapper.StuRegisterMapper">
+
+     <!--根据条件查询补课班级信息列表-->
+     <select id="queryByPhoneAndYear" resultType="com.sqt.edu.dto.response.StuRegisterInfoVo">
+          select sri.student_name,
+          sri.phone,
+          sri.address,
+          sri.class_info_id,
+          ci.class_name,
+          ci.grade,
+          ci.subjects,
+          sri.year
+          from stu_register_info sri
+          left join class_info ci on sri.class_info_id = ci.id
+          where sri.phone = #{phone,jdbcType=VARCHAR}
+          and ci.year = #{year,jdbcType=INTEGER}
+     </select>
+     <!--根据条件查询补课班级信息列表-->
+     <select id="queryStuRegisterInfoList" resultType="com.sqt.edu.dto.response.StuRegisterInfoVo"
+             parameterType="com.sqt.edu.dto.request.QueryStuRegisterInfoDTO">
+          select
+          sri.id,
+          sri.student_name,
+          sri.phone,
+          sri.address,
+          sri.class_info_id,
+          ci.class_name,
+          ci.grade,
+          ci.subjects,
+          sri.year
+          from stu_register_info sri
+          left join class_info ci on sri.class_info_id = ci.id
+          where 1 = 1
+          <if test="phone != null and phone != '' ">
+            and sri.phone = #{phone,jdbcType=VARCHAR}
+          </if>
+          <if test="studentName != null and studentName != '' ">
+               and sri.student_name like #{studentName,jdbcType=VARCHAR}
+          </if>
+          <if test="year != null and year != '' ">
+               and sri.year = #{year,jdbcType=INTEGER}
+          </if>
+          <if test="className != null and className != '' ">
+               and ci.class_name = #{className,jdbcType=VARCHAR}
+          </if>
+     </select>
+
+     <!--导出-->
+     <select id="exportExcel" resultType="com.sqt.edu.dto.response.StuRegisterInfoVo">
+          select
+          sri.id,
+          sri.student_name,
+          sri.phone,
+          sri.address,
+          sri.class_info_id,
+          ci.class_name,
+          ci.grade,
+          ci.subjects,
+          sri.year
+          from stu_register_info sri
+          left join class_info ci on sri.class_info_id = ci.id
+          where sri.id in
+          <foreach collection="ids" open="(" close=")" separator="," item="id">
+               #{id}
+          </foreach>
+     </select>
+</mapper>
