@@ -1,0 +1,78 @@
+server:
+  servlet:
+    context-path: /admin
+  port: 9999
+spring:
+  #   redis 配置
+  redis:
+    enable: true
+    database: 7
+    host: wx-edu
+    port: 6379
+    password: 123456
+    timeout: 5000
+    timeToLive: 15
+    lettuce:
+      pool:
+        MaxTotal: 500
+        minIdle: 1
+        maxWaitMillis: 5000
+        maxIdle: 5
+        testOnBorrow: true
+        testOnReturn: true
+        testWhileIdle: true
+  datasource:
+    type:  com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://wx-edu:3306/wx_edu?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.jdbc.Driver
+      initial-size: 10
+      min-idle: 10
+      max-active: 100
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT version()
+      validation-query-timeout: 10000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      remove-abandoned: true
+      remove-abandoned-timeout: 86400
+      filters: stat,wall
+      connection-properties: druid.stat.mergeSql=true;
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: false
+        login-username: admin
+        login-password: admin
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+        config:
+          enabled: true
+
+# OSS相关配置
+oss:
+  use: true
+  endPoint: oss-accelerate.aliyuncs.com
+  accessKeyId: LTAI4FoY8oLDFTSusNh7uufG
+  accessKeySecret: 0nbomQtih95jmZcR1LxX29THOrI1Ij
+  bucketName: wx-edu
+  url: wx-edu.oss-accelerate.aliyuncs.com
+
+
