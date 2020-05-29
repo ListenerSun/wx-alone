@@ -1,5 +1,7 @@
 server:
-  port: 5555
+  servlet:
+    context-path: /edu
+  port: 8888
 spring:
   #   redis 配置
   redis:

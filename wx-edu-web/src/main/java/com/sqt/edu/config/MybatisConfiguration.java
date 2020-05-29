@@ -31,7 +31,7 @@ import java.util.Set;
  **/
 @Slf4j
 @Configuration
-@MapperScan(basePackages = {"com.sqt.edu.*.mapper*","com.sqt.edu.*.api.mapper*"})
+@MapperScan(basePackages = {"com.sqt.edu.api.*.mapper*"})
 public class MybatisConfiguration {
 
     @Bean
