@@ -26,7 +26,7 @@
           <aliyun-rocket.version>1.7.8.Final</aliyun-rocket.version>
           <ant.version>1.9.7</ant.version>
           <dynamic-datasource-spring-boot-starter.version>2.5.0</dynamic-datasource-spring-boot-starter.version>
-          <guava.version>28.2-jre</guava.version>
+          <guava.version>29.0-jre</guava.version>
           <pagehelper-spring.version>1.2.10</pagehelper-spring.version>
           <commons-lang3.version>3.5</commons-lang3.version>
           <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
